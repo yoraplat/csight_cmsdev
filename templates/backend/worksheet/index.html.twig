@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+{# include backend navigation #}
+{% include 'backend/navigation.html.twig' %}
+
+    <div class="dashboard-content">
+    <h2 class="content-title">Worksheets</h2>
+        <div class="dashboard-content-component">
+        {% for worksheet in worksheets %}
+                <div class="component-item">
+                    <h3 class="component-title">#{{ worksheet.id }}</h3>
+                    <h4 class="component-subtitle">{{ worksheet.period.startDate|date('d/m/Y') }}</h4>
+                    <p>Klant: {{ worksheet.period.client.name }} <small>({{ worksheet.period.client.email }})</small></p>
+                    <p>Werknemer: {{ worksheet.employee.name }}</p>
+                    <p>Start: {{ worksheet.startDate|date('G:i')}}u</p>    
+                    <p>Einde: {{ worksheet.endDate|date('H:i')}}u</p>
+                    <a href="{{ path('edit_worksheet', {'id': worksheet.id }) }}">Aanpassen</a>   
+                </div>
+        {% endfor %}    
+        </div>
+    </div>
+</div>
+
+{% endblock %}

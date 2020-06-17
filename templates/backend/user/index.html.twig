@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+{# include backend navigation #}
+{% include 'backend/navigation.html.twig' %}
+
+    <div class="dashboard-content">
+    <h2 class="content-title">Gebruikers</h2>
+        <div class="dashboard-content-component">
+            {% for user in users %}
+                <div class="component-item">
+                   <h4>{{ user.name }}</h4>
+                   {% if user.roles[0] == "ROLE_EMPLOYEE" %}
+                    <a href="">Prestaties bekijken</a>
+                   {% endif %}
+                    <p>{{ user.email }}</p>
+                </div>
+            {% endfor %}    
+        </div>
+    </div>
+</div>
+
+{% endblock %}

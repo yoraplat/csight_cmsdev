@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+{# include backend navigation #}
+{% include 'backend/navigation.html.twig' %}
+
+    <div class="dashboard-content">
+    <h2 class="content-title">Periodes</h2>
+    <a href="{{ path('add_period') }}" class="content-add">Nieuwe periode <i class="fa fa-plus-square"></i></a>
+        <div class="dashboard-content-component">
+            {% for period in periods %}
+                <div class="component-item">
+                    <p>Klant: {{ period.client.name }} <small>({{ period.client.email }})</small></p>
+                    <p>Start: {{ period.startDate|date('d/m/Y')}}</p>
+                    <p>Einde: {{ period.endDate|date('d/m/Y')}}</p>
+                    <p>{{ period.worksheets|length }} worksheet(s)</p>
+                    <a href="{{ path('edit_period', {'id': period.id }) }}">Aanpassen</a>
+
+                    {# {% for worksheet in period.worksheets %}
+                    <p>Arbeidskost: €{{ worksheet.hourRate * worksheet.time / 60  }} <small>({{ worksheet.startDate|date('d/m/y') }})</small></p>
+                    {% endfor %}     #}
+                </div>
+            {% endfor %}    
+        </div>
+    </div>
+</div>
+
+{% endblock %}

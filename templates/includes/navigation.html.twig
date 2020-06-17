@@ -1,0 +1,10 @@
+{% block navigation %}
+<div class="navigation">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+    <a class="navigation-item" href="{{ path('app_logout') }}"><i class="fa fa-sign-out"></i></a>
+    {% else %}
+    <a class="navigation-item" href="{{ path('app_login') }}">Login <i class="fa fa-sign-in"></i></a>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+.dashboard {
+    width: 100%;
+    display: flex;
+
+    .dashboard-content {
+        width: 100%;
+        // display: flex;
+        padding-left: 10px;
+        background-color: $color3;
+        
+        
+        .content-title {
+            display: block;
+        }
+        
+        .dashboard-content-component {
+            // align-items: flex-start;
+            // flex-direction: row;
+            // flex-wrap: wrap;
+            width: 100%;
+            display: flex;
+            
+            .component-item {
+                flex-grow: 1;
+                // padding-left: 10px;
+            }
+
+            .component-subtitle {
+                margin-top: -10px;
+                font-weight: 500;
+            }
+        }
+    }
+}

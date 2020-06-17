@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+{# include backend navigation #}
+{% include 'backend/navigation.html.twig' %}
+
+    <div class="dashboard-content">
+    <h2 class="content-title">Nieuwe periode</h2>
+        <div class="dashboard-content-component">
+            {{ form(form) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

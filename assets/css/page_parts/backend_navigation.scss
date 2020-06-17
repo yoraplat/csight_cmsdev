@@ -1,0 +1,19 @@
+.dashboard-navigation {
+    min-width: 20%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+
+    background-color: $color5;
+
+    .dashboard-navigation-item {
+        margin: 10px 0;
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+    }
+}
