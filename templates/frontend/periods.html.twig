@@ -9,7 +9,7 @@
     <h3>Je hebt nog geen periodes aangemaakt</h3>
     <p style="padding-bottom: 10px; margin-top:20px">Hier komen je toekomstige periodes te staan.</p>
     {% else %}
-    <h3>Nog te accepteren periodes</h3>
+    <h3>Mijn periodes</h3>
         <table>
             <tr>
                 <th>Naam</th>
@@ -20,19 +20,27 @@
                 <th>Acties</th>
             </tr>
             {% for period in periods|sort((a, b) => a.startDate <=> b.startDate) %}
-            {% if period.acceptedByClient == 0 %}
+            {% if period.acceptedByClient == 1 %}
             <tr>
                 <td>{{ period.name }}</td>
                 <td>{{ period.startDate|date('d/m/Y') }}</td>
                 <td>{{ period.endDate|date('d/m/Y') }}</td>
                 <td>€{{ period.transportCost }}</td>
                 <td>€{{ period.hourRate }}</td>
+
+                {# {% if period.acceptedByClient == 0 %}
                 <td><a href="{{ path('frontend_accept_period', {'id': period.id }) }}">Accepteren</a></td>
+                {% endif %} #}
+                {# {% if period.acceptedByClient == 1 %} #}
+                <td>
+                    <a href="{{ path('frontend_worksheets', {'id': period.id }) }}" class="action-button" >Worksheets</a>
+                    <a href="{{ path('frontend_overview', {'id': period.id }) }}" class="action-button" target="blank_">Overzicht</a>
+                </td>
             </tr>
-            {% endif %}
+                {% endif %}
             {% endfor %}
-        </table> 
-    {% endif %}
+        </table>
+        {% endif %}
         </div>
 </div>
 

@@ -24,6 +24,8 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('backend_dashboard');
         } elseif ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('frontend_dashboard');
+        } elseif ($this->get('security.authorization_checker')->isGranted('ROLE_EMPLOYEE')) {
+            return $this->redirectToRoute('unauthorized');
         } else {
             return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
         } 

@@ -19,5 +19,12 @@ backend:
         permanent: true
 
 
+
+# authentication_token:
+#     path: /authentication_token
+#     controller: authentication_token
+#     methods: ['POST']
+
 api_login_check:
-    path: /api/login_check
+   path: /api/login
+   methods: [POST]

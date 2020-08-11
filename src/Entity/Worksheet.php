@@ -98,6 +98,12 @@ class Worksheet
      */
     private $time;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $overtime;
+
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -307,4 +313,17 @@ class Worksheet
 
         return $this;
     }
+
+    public function getOvertime(): ?int
+    {
+        return $this->overtime;
+    }
+
+    public function setOvertime(?int $overtime): self
+    {
+        $this->overtime = $overtime;
+
+        return $this;
+    }
+
 }

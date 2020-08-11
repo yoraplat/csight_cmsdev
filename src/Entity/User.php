@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -50,18 +51,25 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="array")
      */
-    private $roles;
+    private $roles = [];
 
     /**
      * @ORM\OneToMany(targetEntity=Period::class, mappedBy="client")
      */
     private $userPeriods;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Worksheet::class, mappedBy="employee")
+     * @ApiSubresource
+     */
+    private $userWorksheets;
+
 
     public function __construct()
     {
         $this->periods = new ArrayCollection();
         $this->userPeriods = new ArrayCollection();
+        $this->userWorksheets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,6 +157,14 @@ class User implements UserInterface
     {
         return $this->roles;
     }
+    
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+        $roles[] = ['ROLE_USER'];
+
+        return $this;
+    }
 
     /**
      * @return Collection|Period[]
@@ -175,6 +191,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($userPeriod->getClient() === $this) {
                 $userPeriod->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Worksheet[]
+     */
+    public function getUserWorksheets(): Collection
+    {
+        return $this->userWorksheets;
+    }
+
+    public function addUserWorksheet(Period $userWorksheet): self
+    {
+        if (!$this->userWorksheets->contains($userWorksheet)) {
+            $this->userWorksheets[] = $userWorksheet;
+            $userWorksheet->setEmployee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserWorksheet(Worksheet $userWorksheet): self
+    {
+        if ($this->userWorksheets->contains($userWorksheet)) {
+            $this->userWorksheets->removeElement($userWorksheet);
+            // set the owning side to null (unless already changed)
+            if ($userWorksheet->getEmployee() === $this) {
+                $userWorksheet->setEmployee(null);
             }
         }
 

@@ -10,6 +10,7 @@ use App\Entity\Period;
 use App\Form\EditPeriodFormType;
 use App\Form\NewPeriodFormType;
 
+
 class DashboardController extends AbstractController
 {
     /**
@@ -32,10 +33,9 @@ class DashboardController extends AbstractController
     /**
      * @Route("/admin/period/create", name="add_period")
      */
-    public function addPeriod(Request $request)
+    public function addPeriod(Request $request, \Swift_Mailer $mailer)
     {
         $period = new Period();
-        // $task->setTask('Write a blog post');
 
         $form = $this->createForm(NewPeriodFormType::class, $period);
 
@@ -51,6 +51,20 @@ class DashboardController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($period);
             $entityManager->flush();
+
+            // Send email to client
+
+            // $message = (new \Swift_Message('Hello Email'))
+            //     ->setFrom('yoram.mobile@mail.com')
+            //     ->setTo('yoraplat@student.arteveldehs.be')
+            //     ->setBody(
+            //     $this->renderView(
+            //         // templates/emails/registration.html.twig
+            //         'email/period/new_period.html.twig',
+            //         // ['name' => 'yoram']
+            //     ),'text/html'
+            // );
+            // $mailer->send($message);
 
             return $this->redirectToRoute('backend_dashboard');
         }

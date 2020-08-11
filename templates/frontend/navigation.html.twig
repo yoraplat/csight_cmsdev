@@ -1,18 +1,18 @@
 <nav>
-<div class="dashboard">
     <div class="dashboard-navigation">
-        <div class="dashboard-navigation-logo">
+    <div class="dashboard-navigation-logo">
             <a href="{{ path('backend_dashboard') }}"><img src="{{ asset('images/logo.png') }}"></a>
         </div>
         <div class="dashboard-navigation-item">
-            <a href="{{ path('backend_dashboard') }}">Periodes</a>
+            <a href="{{ path('frontend_dashboard') }}">Dashboard</a>
         </div>
         <div class="dashboard-navigation-item">
-            <a href="{{ path('backend_worksheets') }}">Worksheets</a>
+            <a href="{{ path('frontend_periods') }}">Periodes</a>
         </div>
         <div class="dashboard-navigation-item">
-            <a href="{{ path('backend_users') }}">Gebruikers</a>
+            <a href="{{ path('frontend_recent') }}">Recent</a>
         </div>
+        
         <div class="dashboard-navigation-item">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
@@ -22,5 +22,4 @@
             {% endif %}
         </div>
     </div>
-</div>
 </nav>

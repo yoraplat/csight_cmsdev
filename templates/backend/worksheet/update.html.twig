@@ -7,8 +7,8 @@
 {% include 'backend/navigation.html.twig' %}
 
     <div class="dashboard-content">
-    <h2 class="content-title">Worksheet aanpassen</h2>
         <div class="dashboard-content-component">
+    <h2 class="content-title">Worksheet aanpassen</h2>
             {# {{ form(form) }} #}
             {{ form_start(form) }}
                 <div class="form-error">
@@ -29,6 +29,9 @@
                         {{ form_label(form.pause, 'Pauze (minuten)') }}
                         {{ form_widget(form.pause, {'attr': {'class': 'time_field time_pause'}}) }}
                         
+                        {{ form_label(form.overtime, 'Overuren (minuten)') }}
+                        {{ form_widget(form.overtime) }}
+                        
                         {{ form_label(form.activities, 'Activiteiten') }}
                         {{ form_widget(form.activities) }}
                         
@@ -47,8 +50,6 @@
                         {{ form_label(form.employee, 'Werknemer') }}
                         {{ form_widget(form.employee) }}
 
-                        {{ form_label(form.time, 'Gewerkte tijd (minuten)') }}
-                        {{ form_widget(form.time, {'attr': {'readonly': true}}) }}
                     </div>
                 </div>
             {{ form_end(form) }}
